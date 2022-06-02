@@ -1,3 +1,4 @@
+require 'ddtrace'
 # frozen_string_literal: true
 
 # Copyright, 2021, by Samuel G. D. Williams. <http://www.codeotaku.com>
@@ -30,14 +31,13 @@ module Console
 				end
 				
 				def call(subject = nil, *arguments, **options, &block)
-					if call_context = ::Datadog.tracer.call_context
-						if trace_id = call_context.trace_id and span_id = call_context.span_id
-							options[:dd] = {
-								trace_id: trace_id.to_s,
-								span_id: span_id.to_s,
-							}
-						end
-					end
+					span = ::Datadog::Tracing.active_span
+					trace = ::Datadog::Tracing.active_trace
+					
+					options[:dd] = {
+						span_id: span.id.to_s,
+						trace_id: trace.id.to_s
+					} unless span.nil? or trace.nil?
 					
 					@output.call(subject, *arguments, **options, &block)
 				end
