@@ -22,12 +22,12 @@ RSpec.describe Console::Output::Datadog do
 	
 	context "within datadog trace" do
 		it "should log message with datadog correlation" do
-			::Datadog.tracer.trace("frobulate.apply") do |span|
+			Datadog::Tracing.trace("frobulate.apply",service: "frobulate") do |span|
 				expect(buffer).to receive(:call).with("Hello World", {
 					severity: :info,
 					dd: {
 						trace_id: span.trace_id.to_s,
-						span_id: span.span_id.to_s,
+						span_id: span.id.to_s
 					}
 				})
 				

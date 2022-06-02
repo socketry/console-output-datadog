@@ -2,11 +2,10 @@
 
 require "bundler/setup"
 require "console/output/datadog"
-
 require 'ddtrace'
 
 Datadog.configure do |c|
-	c.tracer.enabled = false
+	c.tracing.enabled = true
 	
 	# To enable debug mode
 	c.diagnostics.debug = true
