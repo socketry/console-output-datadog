@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
 	spec.version = Console::Output::Datadog::VERSION
 	
 	spec.summary = "Attach Datadog trace and span details to logs."
-	spec.authors = ["Samuel Williams"]
+	spec.authors = ["Samuel Williams", "Catalino Cuadrado"]
 	spec.license = "MIT"
 	
 	spec.cert_chain  = ['release.cert']
