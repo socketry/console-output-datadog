@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
 	spec.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH, base: __dir__)
 	
 	spec.add_dependency "console"
-	spec.add_dependency "ddtrace"
+	spec.add_dependency "ddtrace", "~> 1.0"
 	
 	spec.add_development_dependency "rspec"
 end
