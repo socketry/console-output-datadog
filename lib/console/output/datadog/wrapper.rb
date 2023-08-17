@@ -38,12 +38,16 @@ module Console
 				
 				def call(subject = nil, *arguments, **options, &block)
 					if trace = ::Datadog::Tracing.active_trace
-						span = trace.active_span
-					
-						options[:dd] = {
-							span_id: span.id.to_s,
-							trace_id: trace.id.to_s
-						}
+						if span = trace.active_span
+							options[:dd] = {
+								span_id: span.id.to_s,
+								trace_id: trace.id.to_s
+							}
+						else
+							options[:dd] = {
+								trace_id: trace.id.to_s
+							}
+						end
 					end
 					
 					@output.call(subject, *arguments, **options, &block)
