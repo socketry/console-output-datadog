@@ -37,5 +37,20 @@ describe Console::Output::Datadog do
 				logger.info("Hello World")
 			end
 		end
+		
+		it "should log message with datadog correlation even if span is missing" do
+			Datadog::Tracing.trace("frobulate.apply",service: "frobulate") do |span, trace|
+				expect(trace).to receive(:active_span).and_return(nil)
+				
+				expect(buffer).to receive(:call).with("Hello World",
+					severity: :info,
+					dd: {
+						trace_id: span.trace_id.to_s
+					}
+				)
+				
+				logger.info("Hello World")
+			end
+		end
 	end
 end
