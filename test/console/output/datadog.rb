@@ -24,12 +24,16 @@ describe Console::Output::Datadog do
 	end
 	
 	with "datadog trace" do
+		def correlation_trace_id(span)
+			::Datadog::Tracing::Correlation::Identifier.new(trace_id: span.trace_id).trace_id.to_s
+		end
+		
 		it "should log message with datadog correlation" do
 			Datadog::Tracing.trace("frobulate.apply",service: "frobulate") do |span|
 				expect(buffer).to receive(:call).with("Hello World",
 					severity: :info,
 					dd: {
-						trace_id: ::Datadog::Tracing::Correlation::Identifier.new(trace_id: span.trace_id).trace_id,
+						trace_id: correlation_trace_id(span),
 						span_id: span.id.to_s
 					}
 				)
@@ -45,7 +49,7 @@ describe Console::Output::Datadog do
 				expect(buffer).to receive(:call).with("Hello World",
 					severity: :info,
 					dd: {
-						trace_id: ::Datadog::Tracing::Correlation::Identifier.new(trace_id: span.trace_id).trace_id
+						trace_id: correlation_trace_id(span)
 					}
 				)
 				

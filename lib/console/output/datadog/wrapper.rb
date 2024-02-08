@@ -59,7 +59,7 @@ module Console
 				
 				def format_trace_id(id)
 					# 128-bit tracing is not supported by the Datadog agent, so we need to convert it to 64-bit. We expect that this will be changed in the future.
-					::Datadog::Tracing::Utils::TraceId.to_low_order(id)
+					::Datadog::Tracing::Utils::TraceId.to_low_order(id).to_s
 				end
 			end
 		end
