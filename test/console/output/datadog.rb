@@ -29,7 +29,7 @@ describe Console::Output::Datadog do
 				expect(buffer).to receive(:call).with("Hello World",
 					severity: :info,
 					dd: {
-						trace_id: span.trace_id.to_s,
+						trace_id: ::Datadog::Tracing::Correlation::Identifier.new(trace_id: span.trace_id).trace_id,
 						span_id: span.id.to_s
 					}
 				)
@@ -45,7 +45,7 @@ describe Console::Output::Datadog do
 				expect(buffer).to receive(:call).with("Hello World",
 					severity: :info,
 					dd: {
-						trace_id: span.trace_id.to_s
+						trace_id: ::Datadog::Tracing::Correlation::Identifier.new(trace_id: span.trace_id).trace_id
 					}
 				)
 				
