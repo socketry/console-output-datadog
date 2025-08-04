@@ -6,11 +6,17 @@ Attach Datadog `trace_id` and `span_id` to log entries.
 
 ## Usage
 
-Please see the [project documentation](https://socketry.github.io/console-output-datadog).
+Please see the [project documentation](https://socketry.github.io/console-output-datadog/) for more details.
+
+  - [Getting Started](https://socketry.github.io/console-output-datadog/guides/getting-started/index) - This guide explains how to use `console-output-datadog` for correlating logs.
 
 ## Releases
 
-There are no documented releases.
+Please see the [project releases](https://socketry.github.io/console-output-datadog/releases/index) for all releases.
+
+### v0.5.0
+
+  - Update to use `datadog` gem.
 
 ## Contributing
 
