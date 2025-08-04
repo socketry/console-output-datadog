@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2021-2024, by Samuel Williams.
+# Copyright, 2021-2025, by Samuel Williams.
 # Copyright, 2022, by Catalino Cuadrado.
 
-require 'console/logger'
-require 'console/capture'
-require 'console/output/datadog'
+require "console/logger"
+require "console/capture"
+require "console/output/datadog"
 
 describe Console::Output::Datadog do
 	it "has a version number" do

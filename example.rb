@@ -4,10 +4,9 @@
 # Released under the MIT License.
 # Copyright, 2021-2023, by Samuel Williams.
 
-require_relative 'lib/console/output/datadog'
+require_relative "lib/console/output/datadog"
 
-require 'console'
-require 'ddtrace'
+require "console"
 
 Datadog.tracer.trace("log.test") do |span|
 	Console.logger.warn(self, "Hello World")

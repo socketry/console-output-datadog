@@ -10,15 +10,20 @@ Gem::Specification.new do |spec|
 	spec.authors = ["Samuel Williams", "Catalino Cuadrado"]
 	spec.license = "MIT"
 	
-	spec.cert_chain  = ['release.cert']
-	spec.signing_key = File.expand_path('~/.gem/release.pem')
+	spec.cert_chain  = ["release.cert"]
+	spec.signing_key = File.expand_path("~/.gem/release.pem")
 	
 	spec.homepage = "https://github.com/socketry/console-output-datadog"
 	
-	spec.files = Dir.glob(['{lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
+	spec.metadata = {
+		"documentation_uri" => "https://socketry.github.io/console-output-datadog/",
+		"source_code_uri" => "https://github.com/socketry/console-output-datadog.git",
+	}
 	
-	spec.required_ruby_version = ">= 2.7"
+	spec.files = Dir.glob(["{lib}/**/*", "*.md"], File::FNM_DOTMATCH, base: __dir__)
+	
+	spec.required_ruby_version = ">= 3.2"
 	
 	spec.add_dependency "console"
-	spec.add_dependency "ddtrace", "~> 1.10"
+	spec.add_dependency "datadog"
 end

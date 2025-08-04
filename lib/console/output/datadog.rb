@@ -4,12 +4,12 @@
 # Copyright, 2021-2023, by Samuel Williams.
 
 begin
-	require 'ddtrace'
+	require "datadog"
 rescue LoadError
 	# Ignore.
 end
 
-require_relative 'datadog/wrapper'
+require_relative "datadog/wrapper"
 
 module Console
 	module Output
