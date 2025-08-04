@@ -4,6 +4,9 @@
 # Copyright, 2021-2024, by Samuel Williams.
 # Copyright, 2022, by Catalino Cuadrado.
 
+require "covered/sus"
+include Covered::Sus
+
 require "datadog"
 
 Datadog.configure do |config|
